@@ -8,15 +8,6 @@ import scala.annotation.tailrec
  * }
  */
 object ReverseLinkedList {
-  class ListNode(_x: Int = 0, _next: ListNode = null) {
-    var next: ListNode = _next
-    var x: Int = _x
-
-    override def toString: String = {
-      if (next == null) x.toString
-      else x.toString + " " + next.toString
-    }
-  }
   def reverseList(head: ListNode): ListNode = {
     var directPrev: ListNode = null
     var node = head
