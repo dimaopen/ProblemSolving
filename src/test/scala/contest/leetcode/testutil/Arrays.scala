@@ -9,6 +9,6 @@ import scala.reflect.ClassTag
 object Arrays {
   def toTuple2[T](array: Array[T]): (T, T) = (array(0), array(1))
 
-  implicit def toArray2[T: ClassTag](t: (T, T)): Array[T] = Array(t._1, t._2)
+  implicit def toArray[T: ClassTag](t: (T, T)): Array[T] = t.productIterator.asInstanceOf[Iterator[T]].toArray
 
 }

@@ -1,7 +1,7 @@
 package contest.leetcode.array
 
 import contest.leetcode.testutil.Arrays.toTuple2
-import contest.leetcode.testutil.Arrays.toArray2
+import contest.leetcode.testutil.Arrays.toArray
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers._
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
