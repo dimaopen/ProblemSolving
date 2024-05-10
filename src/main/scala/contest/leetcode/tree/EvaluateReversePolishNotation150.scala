@@ -25,7 +25,7 @@ object EvaluateReversePolishNotation150 {
 
     tokens.foldLeft(List.empty[Expression]) {
       case (stack, token) if ops.contains(token) =>
-        val b :: a :: newStack = stack
+        val b :: a :: newStack = stack: @unchecked
         FullExpression(a, b, token) :: newStack
       case (stack, token) =>
         IntExp(token.toInt) :: stack
