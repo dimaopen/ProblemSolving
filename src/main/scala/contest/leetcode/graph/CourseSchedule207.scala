@@ -1,37 +1,28 @@
 package contest.leetcode.graph
 
-import scala.util.boundary
+import scala.annotation.tailrec
 
 /**
  * @author Dmitry Openkov
  */
-object CourseSchedule207 {
+object CourseSchedule207:
   // [0, 1], 1 first
   // 1 -> 2, 1 -> 3
-  def canFinish(numCourses: Int, prerequisites: Array[Array[Int]]): Boolean = {
+  // n*n/2 solution. Slow but clean. In a cycle we remove courses that don't depend on any others.
+  // until we cannot do it or the map is empty
+  def canFinish(numCourses: Int, prerequisites: Array[Array[Int]]): Boolean =
+    @tailrec
+    def go(dependsOn: Map[Int, Array[Int]]): Map[Int, Array[Int]] =
+      val newDependsOn = dependsOn.view
+        .mapValues(_.filter(dependsOn.contains))
+        .filter{case (_, deps) => deps.nonEmpty}
+        .toMap
+      if dependsOn.size == newDependsOn.size then dependsOn
+      else go(newDependsOn)
+
     val dependsOn: Map[Int, Array[Int]] = prerequisites.groupMap(_(0))(_(1))
+    go(dependsOn).isEmpty
 
-    def go(orig: Int, course: Int, dependsOn: Map[Int, Array[Int]]): (Boolean, Map[Int, Array[Int]]) = {
-      val deps = dependsOn.getOrElse(course, Array.empty[Int])
-      if deps.isEmpty then
-        (true, dependsOn)
-      else if deps.contains(orig) then
-        (false, dependsOn)
-      else boundary {
-        (true, deps.foldLeft(dependsOn) { case (dependsOn, dep) =>
-          val (depResult, newDependsOn) = go(orig, dep, dependsOn)
-          if !depResult then boundary.break((false, newDependsOn))
-          newDependsOn - dep
-        })
-      }
-    }
 
-    boundary {
-      dependsOn.keys.foldLeft(dependsOn) { case (dependsOn, course) =>
-        val (depResult, newDependsOn) = go(course, course, dependsOn)
-        if !depResult then boundary.break(false)
-        newDependsOn - course
-      }.isEmpty
-    }
-  }
-}
+end CourseSchedule207
+
