@@ -4,17 +4,17 @@ class Trie208:
 
   private class Node(
     var isWord: Boolean = false,
-    val children: Array[Option[Node]] = Array.fill('z' - 'a' + 1)(None)
+    val children: Array[Node] = Array.ofDim('z' - 'a' + 1)
   ):
     def getChildOrCreateOne(char: Char): Node =
       getChild(char) match
         case None =>
           val node = Node()
-          children(char - 'a') = Some(node)
+          children(char - 'a') = node
           node
         case Some(node) => node
 
-    def getChild(char: Char): Option[Node] = children(char - 'a')
+    def getChild(char: Char): Option[Node] = Option(children(char - 'a'))
 
   private val root: Node = Node()
 
