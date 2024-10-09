@@ -1,6 +1,6 @@
 package contest.leetcode.tree
 
-import contest.leetcode.tree.BinaryTreeLevelOrderTraversal102.TreeNode
+import contest.leetcode.tree.TreeNode
 import org.scalatest.matchers.should.Matchers._
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks

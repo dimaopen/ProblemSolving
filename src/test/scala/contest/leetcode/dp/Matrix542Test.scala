@@ -1,11 +1,9 @@
 package contest.leetcode.dp
 
-import contest.leetcode.dp.Matrix542Test.makeMatrix
+import contest.leetcode.testutil.Arrays.makeMatrix
 import org.scalatest.wordspec.AnyWordSpec
-import org.scalatest.matchers.should.Matchers._
+import org.scalatest.matchers.should.Matchers.*
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
-
-import scala.io.Source
 
 /**
  * @author Dmitry Openkov
@@ -30,11 +28,5 @@ class Matrix542Test extends AnyWordSpec with ScalaCheckPropertyChecks {
         """
       Matrix542.updateMatrix(makeMatrix(matrix1)) shouldBe makeMatrix(expectedResult)
     }
-  }
-}
-
-object Matrix542Test {
-  def makeMatrix(matrix: String): Array[Array[Int]] = {
-    matrix.split('\n').map(_.trim).filter(_.nonEmpty).map(_.split(' ').map(_.toInt))
   }
 }
