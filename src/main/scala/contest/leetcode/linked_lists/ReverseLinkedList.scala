@@ -21,7 +21,7 @@ object ReverseLinkedList {
   }
 
   @tailrec
-def reverseRec(head: ListNode, directPrev: ListNode = null): ListNode = {
+  def reverseRec(head: ListNode, directPrev: ListNode = null): ListNode = {
     if (head == null)
       directPrev
     else {
